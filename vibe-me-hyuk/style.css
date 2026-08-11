@@ -1,0 +1,131 @@
+/* 모든 요소의 기본 여백·패딩을 제거하고 박스 모델 기준을 border-box로 통일 */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+/* 브랜드·텍스트·배경·그림자 색을 변수로 모아 var()로 재사용 */
+:root {
+  --brand: #5e4ddd;
+  --text: #1a1a1a;
+  --text-muted: #8e8e93;
+  --bg: #e5dded;
+  --card-bg: #ffffff;
+  --shadow: 0 12px 40px rgba(0, 0, 0, 0.08);
+}
+
+/* 페이지 기본 배경색과 글자색 설정 */
+body {
+  background-color: var(--bg);
+  color: var(--text);
+  line-height: 2.0; /* 기존 1.6의 1.5배 */
+  display: flex; /* 명함 카드를 화면 중앙에 두기 위해 flex 컨테이너로 만듦 */
+  justify-content: center; /* 가로 축에서 카드를 정중앙에 배치 */
+  align-items: center; /* 세로 축에서 카드를 정중앙에 배치 */
+  min-height: 100vh; /* 세로 중앙 정렬이 되도록 뷰포트 높이만큼 body 높이 확보 */
+}
+
+/* 이름 제목 글자 위계: 30px / 굵기 700 */
+h1 {
+  font-size: 30px;
+  font-weight: 700;
+}
+
+/* 역할(직함) 설명: 작은 글씨 + 흐린 색 */
+.job {
+  font-size: 14px;
+  color: var(--text-muted);
+}
+
+/* 소개 문단: 15px, 줄간격 1.6 */
+.bio {
+  font-size: 15px;
+  line-height: 2.4; /* 기존 1.6의 1.5배 */
+}
+
+/* 명함 카드: 흰 배경, 여백, 둥근 모서리, 은은한 그림자 */
+.card {
+  background-color: var(--card-bg);
+  padding: 48px;
+  border-radius: 24px;
+  box-shadow: var(--shadow);
+  animation: fadeUp 0.6s ease both; /* 카드가 부드럽게 떠오르며 등장 */
+
+}
+
+/* 아래에서 살짝 올라가며 투명도 회복하는 등장 애니메이션 */
+@keyframes fadeUp {
+  from {
+    opacity: 0; /* 시작은 보이지 않게 */
+    transform: translateY(12px); /* 살짝 아래에서 시작 */
+  }
+  to {
+    opacity: 1; /* 완전히 보이게 */
+    transform: translateY(0); /* 원래 위치로 */
+  }
+}
+
+/* 프로필 이미지를 원형으로 */
+.logo {
+  width: 96px; /* 원형에 맞출 가로 크기 */
+  height: 96px; /* 원형에 맞출 세로 크기 */
+  border-radius: 50%; /* 원형 클립 */
+  object-fit: cover; /* 이미지가 원을 가득 채우도록 */
+  border: 2px solid #000; /* 프로필 원형 주변에 검은색 테두리 */
+}
+
+/* 드래그로 글자를 선택했을 때 하이라이트 색 */
+::selection {
+  background-color: var(--brand); /* 선택 배경을 브랜드 색으로 */
+  color: #ffffff; /* 선택 글자는 흰게 대비 */
+}
+
+/* Diphylleia 폰트 적용용 유틸 클래스 */
+.diphylleia-regular {
+  font-family: "Diphylleia", serif;
+  font-weight: 400;
+  font-style: normal;
+}
+
+/* Do Hyeon 폰트 적용용 유틸 클래스 */
+.do-hyeon-regular {
+  font-family: "Do Hyeon", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+}
+
+/* 링크 3개를 가로 한 줄로 배치 */
+.links {
+  display: flex; /* 링크들을 가로 방향으로 나란히 배치 */
+  gap: 16px; /* 링크 사이 간격은 margin 대신 gap으로 지정 */
+}
+
+/* 링크 기본 색을 브랜드 컬러로 */
+.links a {
+  color: var(--brand);
+  text-decoration: none; /* 링크 기본 밑줄 제거 */
+  transition: color 0.2s ease; /* hover 색 변화가 부드럽게 이어지도록 */
+}
+
+/* 링크에 마우스를 올리면 글자색 변화 */
+.links a:hover {
+  color: var(--text); /* hover 시 본문 색으로 전환 */
+}
+
+/* 버튼 기본 색을 브랜드 컬러로 */
+.btn {
+  color: var(--brand);
+  background-color: var(--bg);
+  border: none;
+  font: inherit; /* 버튼 기본 글꼴 대신 부모(문서) 글꼴 상속 */
+  transition: color 0.2s ease; /* hover 색 변화가 부드럽게 이어지도록 */
+  border-radius: 999px;
+}
+
+/* 버튼 hover 시 글자색 변화 */
+.btn:hover {
+  color: var(--text); /* hover 시 본문 색으로 전환 */
+  transform: translateY(-2px);
+  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.1);
+}
